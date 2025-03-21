@@ -1,4 +1,4 @@
-# vLLM Offline API
+# vLLM Offline API with Structured Output
 
 This project provides an offline API for extracting structured information using the vLLM library. It leverages FastAPI for serving the API and Docker for containerization.
 
