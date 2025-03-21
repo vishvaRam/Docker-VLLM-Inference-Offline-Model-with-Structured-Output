@@ -1,0 +1,35 @@
+
+services:
+  vllm:
+    build: ./vllm
+    container_name: vllm
+    ports:
+      - "8000:8000"
+    volumes:
+          - ./vllm/Code:/work
+          - ./vllm/Model:/root/.cache/huggingface/hub 
+  
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility 
+      - MODEL_PATH=/root/.cache/huggingface/hub/models--Qwen--Qwen2.5-3B-Instruct
+
+
+    ipc: host  
+
+    ulimits:  
+      memlock: -1
+      stack: 67108864
+
+    dns:
+      - 8.8.8.8  # Google DNS primary
+      - 8.8.4.4  # Google DNS secondary
+    
+    

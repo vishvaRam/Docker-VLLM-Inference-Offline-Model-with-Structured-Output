@@ -1,0 +1,23 @@
+export PATH=$HOME/.local/bin:$PATH
+huggingface-cli download Qwen/Qwen2.5-3B-Instruct --local-dir ./vllm/Model/models--Qwen--Qwen2.5-3B-Instruct/
+
+sudo docker compose build
+sudo docker compose build --no-cache
+
+# Run only this for API
+sudo docker compose up -d 
+
+# To watch the API  
+sudo docker compose logs -f
+
+# sudo docker compose run -it vllm
+
+# For Terminal
+sudo docker exec -it vllm- /bin/bash
+
+sudo docker compose down
+
+sudo docker restart vllm
+
+# To clear Docker memory ( Delete all Docker images!!)
+sudo docker system prune
